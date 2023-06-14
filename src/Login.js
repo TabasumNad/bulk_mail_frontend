@@ -20,7 +20,7 @@ function Login(){
        
         e.preventDefault()
         
-        axios.post('http://localhost:4000/login',{email,password})
+        axios.post('http://localhost:4000/login',{email})
         .then(result=>{
             console.log(result)
             if(result.data ==="Success")
