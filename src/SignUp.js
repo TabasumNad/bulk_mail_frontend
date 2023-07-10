@@ -16,7 +16,7 @@ function SignUp() {
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-        axios.post('http://localhost:4000/register',{name,email,password})
+        axios.post('https://bulk-mail-backend-l2aw.vercel.app/register',{name,email,password})
         .then(result=>{console.log(result)
             navigate('/login')
         })
