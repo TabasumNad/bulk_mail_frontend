@@ -34,7 +34,7 @@ import './App.css';
 </nav>
 <h2 className='top mt-2'><b>  <u>Welcome to bulk mail sender</u></b></h2>
         <p className='theory'><strong>A bulk mail is a marketing message sent by a brand to multiple recipients at once. 
-            It aims to promote a business, sell goods, and develop relationships. Analyzed graphs for some basic informaton. Let's give a try by <u>signup</u> or <u>login</u> if already created a account.
+            It aims to promote a business, sell goods, and develop relationships. Find below analyzed graphs for some basic informaton. Let's give a try sending email to multiple recipients by <u>signup</u> or <u>login</u> if already created a account.
             </strong></p>
         <div className=' flex-contain'>
         <div className='wid pt-2 '>
