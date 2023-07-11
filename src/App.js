@@ -5,6 +5,7 @@ import Login from "./Login";
 import Home from "./Home";
 import './App.css';
 import Credential from "./Credential";
+import Email from "./Email";
 
 function App() {
   return (
@@ -13,9 +14,11 @@ function App() {
       <Routes>
         
       <Route path='/credential' element={<Credential/>}></Route>
-        <Route path='/' element={<SignUp/>}></Route>
+        <Route path='/signup' element={<SignUp/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
-        <Route path='/home' element={<Home/>}></Route>
+        <Route path='/' element={<Home/>}></Route>
+
+        <Route path='/sendmail' element={<Email/>}></Route>
 
         </Routes>
         </BrowserRouter>

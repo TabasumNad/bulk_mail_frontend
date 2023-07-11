@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Credential from './Credential';
+// import Credential from './Credential';
 
 function Login(){
 
@@ -26,7 +26,7 @@ function Login(){
             if(result.data ==="Success")
             {
 
-                navigate('/home')
+                navigate('/sendmail')
             }else
                 
               {
