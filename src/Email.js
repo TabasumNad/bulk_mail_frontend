@@ -18,7 +18,7 @@ const navigate= useNavigate();
   const sendEmail = async (e) => {
       e.preventDefault();
 // Connection to backend
-      const res = await fetch("hhttps://bulk-mail-backend-l2aw.vercel.app/home", {
+      const res = await fetch("https://bulk-mail-backend.onrender.com/home", {
           method: "POST",
           headers: {
               "Content-Type": "application/json"
