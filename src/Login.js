@@ -20,7 +20,7 @@ function Login(){
        
         e.preventDefault()
         
-        axios.post('https://bulk-mail-backend.onrender.com/login',{email})
+        axios.post('http://localhost:4000/login',{email})
         .then(result=>{
             console.log(result)
             if(result.data ==="Success")
@@ -40,7 +40,11 @@ function Login(){
     }
 
     return(
+        <div>
+            <h2 className='note d-flex justify-content-center align-items-center bg-secondary mb-0 pt-3'>Please wait for some seconds</h2>
+        
         <div className='d-flex justify-content-center align-items-center bg-secondary vh-100'>
+            
         <div className='bg-white p-3 rounded w-25'>
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
@@ -74,6 +78,7 @@ function Login(){
                    </div>
                    <button type='submit' className='btn btn-success w-100 rounded-0'>Login</button>
             </form>
+            </div>
             </div>
             </div>
     )

@@ -1,54 +1,64 @@
 import React, { useState } from 'react'
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 import { Navigate, useNavigate } from 'react-router-dom';
+// import xlsx from 'xlsx';
+import * as xlsx from 'xlsx';
 import Chart1 from './Chart1';
 
  function Email() {
 
   const [show, setShow] = useState(false);
-
-  const [email, setEmail] = useState("");
-  const [sub, setSub] = useState("");
-  const [message, setMessage] = useState("");
+  const [file, setFile] = useState(null);
+  const [subject, setSubject] = useState("");
+  const [message,setMessage]=useState("");
+  const [recipients, setRecipients] = useState([]);
 
 const navigate= useNavigate();
 
-  const sendEmail = async (e) => {
-      e.preventDefault();
-// Connection to backend
-      const res = await fetch("https://bulk-mail-backend.onrender.com/home", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-              email,
-              sub,
-              message,
-          })
-      });
+const handleFileChange = (event) => {
+  const selectedFile = event.target.files[0];
+  setFile(selectedFile);
 
 
-      const data = await res.json();
-      console.log(data);
+// Parse the Excel file and extract email addresses
+const reader = new FileReader();
+reader.onload = (e) => {
+  const data = new Uint8Array(e.target.result);
+  const workbook = xlsx.read(data, { type: 'array' });
+  const sheetName = workbook.SheetNames[0];
+  const sheetData = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
+  const emailAddresses = sheetData.map((row) => row.email);
+  setRecipients(emailAddresses);
+};
+reader.readAsArrayBuffer(selectedFile);
+};
 
-      if (data.status === 401 || !data) {
-          console.log("error")
-      } else {
-          setShow(true);
-          setEmail("")
-          console.log("Email sent");
-        //   navigate('/message');
 
-      }
-  }
+  const sendEmail = async () => {
+    
+            try {
+                const response = await axios.post('http://localhost:4000/send-emails', {
+                    recipients: recipients.map(recipients => recipients.trim()), // Split and clean up the email list
+                  subject,
+                  message,
+                  
+                });
+                console.log(response.data);}
+            
+        catch (error) {
+            console.error('Error sending emails:', error);
+                navigate('/message');
+          }
+        };
+      
 
   return (
     <div className='app '>
         
-        {/* <div className='wid'><Chart1/></div> */}
+       
         <div>
  {
                 show ? <Alert variant="primary" onClose={() => setShow(false)} dismissible>
@@ -61,28 +71,38 @@ const navigate= useNavigate();
                     <h1 className='font-weight-bold'>Send Emails in bulks </h1>
                     <img src="https://www.pcworld.com/wp-content/uploads/2023/04/gmail-logo-header.jpg?quality=50&strip=all" 
                     alt="gmail img" className='mx-3 rounded-4' style={{ width: "55px" }} />
-                </div>
-                <div className="d-flex justify-content-center">
+                </div>    
+
+<div>
+      <h3 className='note'><b>Verify that the Excel file you're uploading contains the email addresses in a column named </b> <strong>"email"</strong></h3>
+
+      <input type="file" accept=".xlsx" onChange={handleFileChange} />
+
+      <div className="d-flex justify-content-center">
                     <Form className='mt-5 col-lg-6'>
-                        <Form.Group className="mb-3 " controlId="formBasicEmail">
-                            <Form.Label className='lbl'><strong>Enter The Emails Of Recipient</strong></Form.Label>
-                            <Form.Control className='colr' type="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter emails:" />
-                        </Form.Group>
+                        <div>
+        <strong>Recipients:</strong>
+        <ul>
+        {recipients.map((email, index) => (
+            <li key={index}>{email}</li>
+          ))}
+            
+           
+        </ul>
+      </div>
 
                         <Form.Group className="mb-3 " controlId="formBasicEmail">
-                            <Form.Control className='colr' type="text" name='sub' value={sub} onChange={(e) => setSub(e.target.value)} placeholder="Sub:" />
+                            <Form.Control className='colr' type="text" name='subject' value={subject} onChange={(e) => setSubject(e.target.value)} placeholder="Subject:" />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control className='colr ht' type="text" name='message' value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Message:" />
+                            <Form.Control className='colr ht' type="text" name='message' value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Content:" />
                         </Form.Group>
-                        {/* <Button   type="submit" onClick={sendEmail}>
-                        <span class="bi bi-send">send</span>
-                        </Button> */}
+                        
                         <Button type="submit" class="bi bi-send-check" onClick={sendEmail} >Send</Button>
                     </Form>
                 </div>
-
+    </div>
             </div>
             </div>
             </div>
@@ -90,5 +110,7 @@ const navigate= useNavigate();
     
   );
 }
+ 
+ 
 
 export default Email;

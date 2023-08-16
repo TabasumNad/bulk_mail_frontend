@@ -16,7 +16,7 @@ function SignUp() {
 
     const handleSubmit=(e)=>{
         e.preventDefault()
-        axios.post('https://bulk-mail-backend.onrender.com/register',{name,email,password})
+        axios.post('http://localhost:4000/register',{name,email,password})
         .then(result=>{console.log(result)
             navigate('/login')
         })
@@ -24,8 +24,11 @@ function SignUp() {
     }
 
 
-  return (
+  return ( 
+    <div>
+        <h2 className='note d-flex justify-content-center align-items-center bg-secondary mb-0 pt-3'>Please wait for some seconds</h2>
     <div className='d-flex justify-content-center align-items-center bg-secondary vh-100'>
+
         <div className='bg-white p-3 rounded w-25'>
             <h2>Register</h2>
             <form onSubmit={handleSubmit}>
@@ -78,6 +81,7 @@ function SignUp() {
             
         </div>
 
+    </div>
     </div>
   )
 }
