@@ -45,12 +45,16 @@ reader.readAsArrayBuffer(selectedFile);
                   subject,
                   message,
                   
-                });
-                console.log(response.data);}
+                },
+                navigate('/message')
+                );
+               
+                console.log(response.data);
+                }
             
         catch (error) {
             console.error('Error sending emails:', error);
-                navigate('/message');
+               
           }
         };
       
@@ -60,11 +64,7 @@ reader.readAsArrayBuffer(selectedFile);
         
        
         <div>
- {
-                show ? <Alert variant="primary" onClose={() => setShow(false)} dismissible>
-                    Your Email Succesfully Send
-                </Alert> : ""
-            }
+ 
            
             <div className="  container  mt-0 pt-5">
                 <div className='d-flex justify-content-center'>
