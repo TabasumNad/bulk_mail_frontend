@@ -6,6 +6,7 @@ import Home from "./Home";
 import './App.css';
 import Credential from "./Credential";
 import Email from "./Email";
+import Message from "./Message";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path='/signup' element={<SignUp/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/' element={<Home/>}></Route>
-
+        <Route path='/message' element={<Message/>}></Route>
         <Route path='/sendmail' element={<Email/>}></Route>
 
         </Routes>
