@@ -40,7 +40,7 @@ reader.readAsArrayBuffer(selectedFile);
   const sendEmail = async () => {
     
             try {
-                const response = await axios.post('http://localhost:4000/send-emails', {
+                const response = await axios.post('https://mail-in-bulk.onrender.com/send-emails', {
                     recipients: recipients.map(recipients => recipients.trim()), // Split and clean up the email list
                   subject,
                   message,
