@@ -44,7 +44,7 @@ reader.readAsArrayBuffer(selectedFile);
                   message,
                   
                 },
-                // navigate('/message')
+                navigate('/message')
                 );
                
                 console.log(response.data);
