@@ -7,7 +7,7 @@ import Chart1 from './Chart1';
 import { Link } from 'react-router-dom';
 import Chart2 from './Chart2';
 import './App.css';
-// import Email from './Email';
+
 
  function Home() {
 
@@ -46,10 +46,7 @@ import './App.css';
             </div>
             </div>
             <div className='wid'>
-            {/* <Link to="/sendmail" className='btn btn-default w-100 bg-light rounded-0 text-decoration-none'>
-                    Click Here To send Mail
-                </Link> */}
-                {/* <Email/> */}
+          
                    </div>
                    <footer class="py-5 mt-3 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>

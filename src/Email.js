@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Alert from 'react-bootstrap/Alert';
 import { Navigate, useNavigate } from 'react-router-dom';
-// import xlsx from 'xlsx';
 import * as xlsx from 'xlsx';
-import Chart1 from './Chart1';
+
 
  function Email() {
 
@@ -60,20 +58,18 @@ reader.readAsArrayBuffer(selectedFile);
       
 
   return (
-    <div className='app '>
+    <div className='app '> 
         
-       
-        <div>
- 
-           
+        <div> 
+            
             <div className="  container  mt-0 pt-5">
                 <div className='d-flex justify-content-center'>
                     <h1 className='font-weight-bold'>Send Emails in bulks </h1>
                     <img src="https://www.pcworld.com/wp-content/uploads/2023/04/gmail-logo-header.jpg?quality=50&strip=all" 
                     alt="gmail img" className='mx-3 rounded-4' style={{ width: "55px" }} />
                 </div>    
-
-<div>
+                
+                <div>
       <h3 className='note'><b>Verify that the Excel file you're uploading contains the email addresses in a column named </b> <strong>"email"</strong></h3>
 
       <input type="file" accept=".xlsx" onChange={handleFileChange} />
@@ -110,7 +106,7 @@ reader.readAsArrayBuffer(selectedFile);
     
   );
 }
- 
- 
+
+
 
 export default Email;
