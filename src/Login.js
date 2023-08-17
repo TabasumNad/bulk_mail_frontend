@@ -20,7 +20,7 @@ function Login(){
        
         e.preventDefault()
         
-        axios.post('https://mail-in-bulk.onrender.com/login',{email})
+        axios.post('https://bulk-mail-backend.vercel.app/login',{email})
         .then(result=>{
             console.log(result)
             if(result.data ==="Success")
